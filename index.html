@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ff758c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        #yesBtn {
+            background-color: #ff4b5c;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.15);
+            background-color: #ff1e3c;
+            box-shadow: 0 6px 20px rgba(255, 30, 60, 0.4);
+        }
+
+        #noBtn {
+            background-color: white;
+            color: #ff4b5c;
+            position: relative;
+        }
+
+        #noBtn:hover {
+            transform: scale(0.8);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: fixed;
+            color: white;
+            font-size: 30px;
+            animation: floatUp 4s ease-in infinite;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+
+        .message {
+            font-size: 2rem;
+            margin-top: 30px;
+            display: none;
+            animation: bounce 0.6s ease;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .countdown {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            display: none;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? 💕</h1>
+    <p>This is a special question for someone special...</p>
+    <div class="countdown" id="countdown"></div>
+    
+    <div class="buttons">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 🙈</button>
+    </div>
+    
+    <div class="message" id="loveMessage">
+        🎉 Yayyyy!!! I Love You So Much!!! 💖💖💖
+    </div>
+</div>
+
+<script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const loveMessage = document.getElementById("loveMessage");
+    const countdownDiv = document.getElementById("countdown");
+
+    // Countdown Timer
+    function startCountdown() {
+        const valentineDate = new Date('2026-02-14T00:00:00').getTime();
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const timeLeft = valentineDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownDiv.style.display = 'block';
+                countdownDiv.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Valentine's Day ⏳`;
+            } else {
+                countdownDiv.textContent = "It's Valentine's Day! 🎉";
+            }
+        }, 1000);
+    }
+
+    startCountdown();
+
+    // Yes Button
+    yesBtn.addEventListener("click", () => {
+        loveMessage.style.display = "block";
+        yesBtn.disabled = true;
+        noBtn.disabled = true;
+        createHearts();
+    });
+
+    // No Button - Runs Away
+    noBtn.addEventListener("mouseover", () => {
+        const randomX = Math.random() * (window.innerWidth - 100);
+        const randomY = Math.random() * (window.innerHeight - 100);
+        noBtn.style.position = "fixed";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    });
+
+    // Create Floating Hearts
+    function createHearts() {
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, i * 100);
+        }
+    }
+</script>
+
+</body>
+</html>
