@@ -1,222 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? Mohtarma 💕</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rashii ❤️</title>
 
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ff758c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow: hidden;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap');
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #120012, #000);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .container {
-            text-align: center;
-            color: white;
-            z-index: 10;
-            padding: 20px;
-        }
+/* PASSWORD SCREEN */
+#passwordScreen {
+    text-align: center;
+}
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
+input {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-top: 15px;
+    width: 220px;
+}
 
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            animation: fadeIn 2.5s ease-in-out;
-        }
+.unlockBtn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    background: #ff0055;
+    color: white;
+}
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+/* MAIN CARD */
+.card {
+    display: none;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 650px;
+    box-shadow: 0 0 60px rgba(255,0,100,0.4);
+}
 
-        button {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+}
 
-        #yesBtn {
-            background-color: #ff4b5c;
-            color: white;
-        }
+button {
+    padding: 14px 28px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
 
-        #yesBtn:hover {
-            transform: scale(1.15);
-            background-color: #ff1e3c;
-            box-shadow: 0 6px 20px rgba(255, 30, 60, 0.4);
-        }
+#yesBtn {
+    background: linear-gradient(45deg, #ff004c, #ff5e94);
+    color: white;
+}
 
-        #noBtn {
-            background-color: white;
-            color: #ff4b5c;
-            position: relative;
-        }
+#yesBtn:hover {
+    transform: scale(1.15);
+}
 
-        #noBtn:hover {
-            transform: scale(0.8);
-        }
+#noBtn {
+    background: white;
+    color: #ff004c;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* Ring */
+.ring {
+    font-size: 60px;
+    display: none;
+    animation: pop 1s ease forwards;
+}
 
-        .heart {
-            position: fixed;
-            color: white;
-            font-size: 30px;
-            animation: floatUp 4s ease-in infinite;
-            pointer-events: none;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotateZ(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotateZ(360deg);
-                opacity: 0;
-            }
-        }
+/* Hearts */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
 
-        .message {
-            font-size: 2rem;
-            margin-top: 30px;
-            display: none;
-            animation: bounce 0.6s ease;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
 
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
+/* Typing effect */
+#loveLetter {
+    margin-top: 15px;
+    min-height: 60px;
+    font-style: italic;
+    opacity: 0.9;
+}
 
-        .countdown {
-            font-size: 1.3rem;
-            margin-top: 20px;
-            display: none;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-    </style>
+/* Countdown */
+#countdown {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Secret Message */
+.secret {
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Will You Be My Valentine? Mohtarma 💕</h1>
-    <p>This is a special question for my special lady...</p>
-    <div class="countdown" id="countdown"></div>
-    
-    <div class="buttons">
-        <button id="yesBtn">Yes ❤️</button>
-        <button id="noBtn">No 🙈</button>
-    </div>
-    
-    <div class="message" id="loveMessage">
-        🎉 Yayyyy!!! I Love You So Much!!! 💖💖💖
-    </div>
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+    <h2>Enter Our Special Word 💖</h2>
+    <input type="password" id="passwordInput" placeholder="Hint: Her Nickname">
+    <button class="unlockBtn" onclick="checkPassword()">Unlock</button>
 </div>
 
+<!-- MAIN CONTENT -->
+<div class="card" id="mainCard">
+
+<h1 id="mainTitle"></h1>
+
+<div id="countdown"></div>
+
+<div id="loveLetter"></div>
+
+<button onclick="playMusic()">🎵 Play Our Song</button><br>
+
+<button id="yesBtn">Yes, My Love 💖</button>
+<button id="noBtn">No 🙈</button>
+
+<div class="ring" id="ring">💍</div>
+
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="200" style="border-radius:15px; margin-top:15px;">
+
+<div class="secret" onclick="showSecret()">✨ Click here for secret message</div>
+
+</div>
+
+<audio id="bgMusic" loop>
+<source src="https://pagalfree.com/musics/128-Tum%20Hi%20Ho%20128%20Kbps.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const loveMessage = document.getElementById("loveMessage");
-    const countdownDiv = document.getElementById("countdown");
+const herName = "Rashii";
+document.getElementById("mainTitle").innerText =
+    "Will You Be My Valentine, " + herName + "? ❤️";
 
-    // Countdown Timer
-    function startCountdown() {
-        const valentineDate = new Date('2026-02-14T00:00:00').getTime();
-        
-        setInterval(() => {
-            const now = new Date().getTime();
-            const timeLeft = valentineDate - now;
-
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                countdownDiv.style.display = 'block';
-                countdownDiv.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Valentine's Day ⏳`;
-            } else {
-                countdownDiv.textContent = "It's Valentine's Day! 🎉";
-            }
-        }, 1000);
+/* PASSWORD */
+function checkPassword() {
+    const pass = document.getElementById("passwordInput").value;
+    if(pass.toLowerCase() === "rashii") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainCard").style.display = "block";
+    } else {
+        alert("Wrong password 😜 Try again!");
     }
+}
 
-    startCountdown();
+/* MUSIC */
+function playMusic() {
+    document.getElementById("bgMusic").play();
+}
 
-    // Yes Button
-    yesBtn.addEventListener("click", () => {
-        loveMessage.style.display = "block";
-        yesBtn.disabled = true;
-        noBtn.disabled = true;
-        createHearts();
-    });
+/* YES CLICK */
+document.getElementById("yesBtn").addEventListener("click", () => {
+    document.getElementById("ring").style.display = "block";
+    createHearts();
+});
 
-    // No Button - Runs Away
-    noBtn.addEventListener("mouseover", () => {
-        const randomX = Math.random() * (window.innerWidth - 100);
-        const randomY = Math.random() * (window.innerHeight - 100);
-        noBtn.style.position = "fixed";
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
-    });
+/* NO BUTTON RUN */
+document.getElementById("noBtn").addEventListener("mouseover", () => {
+    const btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.top = Math.random() * window.innerHeight + "px";
+    btn.style.left = Math.random() * window.innerWidth + "px";
+});
 
-    // Create Floating Hearts
-    function createHearts() {
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                const heart = document.createElement("div");
-                heart.classList.add("heart");
-                heart.innerHTML = "❤️";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                document.body.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 5000);
-            }, i * 100);
-        }
+/* HEARTS */
+function createHearts() {
+    for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
     }
+}
+
+/* TYPING EFFECT */
+const text = "From the moment you came into my life, everything became brighter. I don’t just want a Valentine… I want forever with you 💖";
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("loveLetter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+typeWriter();
+
+/* COUNTDOWN */
+function updateCountdown() {
+    const now = new Date();
+    const year = now.getFullYear();
+    let valentines = new Date(year, 1, 14);
+    if (now > valentines) {
+        valentines = new Date(year + 1, 1, 14);
+    }
+    const diff = valentines - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("countdown").innerText =
+        days + " days until our Valentine's Day ❤️";
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* SECRET */
+function showSecret() {
+    alert("No matter what, I choose you. Today. Tomorrow. Always. 💍❤️");
+}
 </script>
 
 </body>
